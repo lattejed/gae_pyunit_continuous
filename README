@@ -1,0 +1,27 @@
+Continuous Unit Testing for App Engine
+--------------------------------------
+
+This program provides very simple continuous unit testing for any python module being developed for Google App Engine. It allows the module to be ``watched`` ie to have its standard unit tests run every time the module is saved to disk. It uses the standard python unit testing framework.
+
+Usage
+-----
+
+1. Copy ``watch_module.py`` to your module's directory or add ``watch_module.py`` to your path. 
+
+2. Start watching with the command ``python watch_module.py your_module.py``.
+
+3. Every time ``your_module.py`` is saved, it will re-run all unit tests in the file.
+
+4. If you are not using OS X or have your App Engine environment (linked) somewhere other than ``/usr/local/google_appengine``, you will have to set the directory in ``watch_module.py``. 
+
+How does it work?
+-----------------
+
+Unit testing on App Engine is difficult for several reasons. Normally, modules that include App Engine imports can't be run from the command line since the App Engine framework is not set to your path by default. AE's ``dev_appserver.py`` takes care of this by updating your path before it runs. This program updates your path when it runs similar to the development server.
+
+This program also sets up a ``fake`` datastore (useful for testing) and registers the other APIs necessary to run App Engine modules from the command line.
+
+Notes
+-----
+
+This project is in its most basic form and will be updated to be more useful in the future. Feedback is always welcome.
